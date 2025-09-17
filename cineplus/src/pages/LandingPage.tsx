@@ -1,14 +1,17 @@
+// cineplus/src/pages/LandingPage.tsx
 import React from "react";
 import Navbar from "../components/Navbar";
+import HeroBanner from "../components/HeroBanner";
+import MovieCarousel from "../components/MovieCarousel";
+import Footer from "../components/Footer";
 
 const LandingPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex flex-col items-center justify-center h-[80vh]">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a CinePlus</h1>
-        <p className="text-lg text-gray-700">Tu cine favorito online</p>
-      </div>
+      <HeroBanner />
+      <MovieCarousel />
+      <Footer />
     </div>
   );
 };
