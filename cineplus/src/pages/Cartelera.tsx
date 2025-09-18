@@ -6,17 +6,18 @@ import Navbar from "../components/Navbar";
 
 const Cartelera: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[#363434] text-gray-800">
       <Navbar />
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">
+        <h2 className="text-3xl font-bold text-[#ADA6A6] mb-8 text-center">
           🎬 Cartelera de Estrenos
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {movies.map((movie) => (
             <Link key={movie.id} to={`/detalle/${movie.id}`}>
-              <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+              <div className="bg-[#D9D7D7] rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border-2 border-black">
+
                 <div className="relative">
                   <img
                     src={movie.img}
@@ -31,7 +32,7 @@ const Cartelera: React.FC = () => {
                   <h3 className="text-lg font-bold text-gray-800">
                     {movie.title}
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">{movie.format}</p>
+                  <p className="text-sm text-black mt-1">{movie.format}</p>
                   <button className="mt-3 w-full bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700">
                     Ver detalles
                   </button>
