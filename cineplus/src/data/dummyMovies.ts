@@ -6,6 +6,9 @@ export const movies = [
     img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008117.jpg",
     ageRating: "TP",
     format: "2D",
+    synopsis:
+      "Freddy Lupin, heredero de una orgullosa familia de hombres lobo, descubre un secreto que cambiará su destino.",
+    trailerUrl: "https://www.youtube.com/embed/7YvAYIJSSZY",
   },
   {
     id: 2,
@@ -13,6 +16,9 @@ export const movies = [
     img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008182.jpg",
     ageRating: "14",
     format: "2D",
+    synopsis:
+      "Un thriller político sobre la vida de Vladimir Putin y sus decisiones más controvertidas.",
+    trailerUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
     id: 3,
@@ -20,26 +26,18 @@ export const movies = [
     img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008232.jpg",
     ageRating: "TP",
     format: "2D",
+    synopsis:
+      "Woody, Buzz y los juguetes descubren la importancia de la amistad y la lealtad.",
+    trailerUrl: "https://www.youtube.com/embed/v-PjgYDrg70",
   },
   {
     id: 4,
-    title: "DEMON SLAYER CASTILLO INFINITO",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00007806.jpg",
-    ageRating: "14",
-    format: "2D - D-BOX - SALA XD",
-  },
-  {
-    id: 5,
-    title: "EL CONJURO 4 ÚLTIMOS RITOS",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008089.jpg",
-    ageRating: "16",
+    title: "JOKER: FOLIE À DEUX",
+    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008172.jpg",
+    ageRating: "18",
     format: "2D",
-  },
-  {
-    id: 6,
-    title: "MISTURA",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008007.jpg",
-    ageRating: "14",
-    format: "2D",
+    synopsis:
+      "Arthur Fleck regresa en una historia más oscura que explora el amor, la locura y la música.",
+    trailerUrl: "https://www.youtube.com/embed/XYiK4E0hMXo",
   },
 ];
