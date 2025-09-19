@@ -7,23 +7,23 @@ const HeroBanner: React.FC = () => {
   const banners = [
     {
       id: 1,
-      img: "https://sacnkprodpecms.blob.core.windows.net/content/banners/home/1756939832041-large-BANNER-HOME.webp",
-      alt: "Toy Story",
+      img: "https://static.cinepolis.com/img/front/11/202591893036993-prin.png",
+      alt: "Tony, Shelly y la lámpara mágica",
     },
     {
       id: 2,
-      img: "https://sacnkprodpecms.blob.core.windows.net/content/banners/home/1757517212915-large-Banner-web.webp",
-      alt: "Conjuro 4",
+      img: "https://static.cinepolis.com/img/front/11/202591892855333-prin.jpg",
+      alt: "Camina o muere",
     },
     {
       id: 3,
-      img: "https://static.cinepolis.com/img/front/11/20259311338169-prin.jpg",
-      alt: "Demon Slayer",
+      img: "https://static.cinepolis.com/img/front/11/202591892614663-prin.jpg",
+      alt: "Patas",
     },
     {
       id: 4,
-      img: "https://static.cinepolis.com/img/front/11/202591012140659-prin.jpg",
-      alt: "200% Lobo",
+      img: "https://static.cinepolis.com/img/front/11/2025918142614944-prin.png",
+      alt: "El gran viaje de tu vida",
     },
     {
       id: 5,
