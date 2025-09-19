@@ -16,9 +16,10 @@ const navLinks = [
 
 interface NavbarProps {
   heroHeight?: number;
+  variant?: 'landing' | 'boletos';
 }
 
-const Navbar: React.FC<NavbarProps> = ({ heroHeight = 500 }) => {
+const Navbar: React.FC<NavbarProps> = ({ heroHeight = 500, variant = 'landing' }) => {
   const [atTop, setAtTop] = useState(true);
   const [logoHover, setLogoHover] = useState(false);
   const [beyondHero, setBeyondHero] = useState(false);
@@ -32,16 +33,29 @@ const Navbar: React.FC<NavbarProps> = ({ heroHeight = 500 }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [heroHeight]);
 
+  // Estilos condicionales por variante
+  let headerClass = "w-full z-100 transition-all duration-300 ";
+  let headerStyle: React.CSSProperties = {};
+  let logoSrc = beyondHero || logoHover ? "/public/LOGO_SET2.png" : "/public/LOGO_SET1.png";
+  if (variant === 'landing') {
+    headerClass += 'fixed left-0 top-0 ';
+    headerClass += beyondHero
+      ? "bg-cineplus-black border-b border-cineplus-red navbar-shadow-dark"
+      : atTop
+        ? "bg-transparent color-cineplus-black shadow-none"
+        : "bg-cineplus-black border-cineplus-red navbar-shadow-dark";
+    headerStyle = beyondHero ? { background: "#000000", color: "#ffffff", backdropFilter: "none" } : atTop ? { background: "transparent", color: "#000000", backdropFilter: "none" } : { background: "transparent", color: "#000000", backdropFilter: "blur(0px)" };
+  } else if (variant === 'boletos') {
+    // Estático, no fixed
+    headerClass += "bg-white border-b border-gray-200 shadow-sm";
+    headerStyle = { background: "#fff", color: "#000", boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)" };
+    logoSrc = "/public/LOGO_SET1.png";
+  }
+
   return (
     <header
-      className={`w-full z-100 fixed left-0 top-0 transition-all duration-300
-        ${beyondHero
-          ? "bg-cineplus-black border-b border-cineplus-red navbar-shadow-dark"
-          : atTop
-            ? "bg-transparent color-cineplus-black shadow-none"
-            : "bg-cineplus-black border-cineplus-red navbar-shadow-dark"}
-      `}
-      style={beyondHero ? { background: "#000000", color: "#ffffff", backdropFilter: "none" } : atTop ? { background: "transparent", color: "#000000", backdropFilter: "none" } : { background: "transparent", color: "#000000", backdropFilter: "blur(0px)" }}
+      className={headerClass}
+      style={headerStyle}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
         {/* Logo */}
@@ -52,7 +66,7 @@ const Navbar: React.FC<NavbarProps> = ({ heroHeight = 500 }) => {
             onMouseLeave={() => setLogoHover(false)}
           >
             <img
-              src={beyondHero || logoHover ? "/public/LOGO_SET2.png" : "/public/LOGO_SET1.png"}
+              src={logoSrc}
               alt="CinePlus Logo"
               className="h-9 w-9 transition"
             />

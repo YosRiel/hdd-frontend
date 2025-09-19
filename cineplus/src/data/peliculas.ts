@@ -6,7 +6,8 @@ export interface Pelicula {
   genero: string;
   clasificacion: string;
   duracion: string;
-  imagen: string;
+  banner?: string; // 1280x480px o 1920x720px
+  imagenCard?: string; // 414x621px o 600x900px
   trailerUrl?: string;
   reparto?: string[];
   horarios?: string[];
@@ -21,7 +22,6 @@ export const peliculas: Pelicula[] = [
     genero: 'Acción, Ciencia Ficción',
     clasificacion: 'PG-13',
     duracion: '1h 50m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42713-292234-20240702093213.jpg',
     trailerUrl: '',
     reparto: [],
     horarios: ['16:00', '19:00', '21:30'],
@@ -33,10 +33,11 @@ export const peliculas: Pelicula[] = [
     genero: 'Animación, Acción',
     clasificacion: 'APT',
     duracion: '2h 0m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42714-292235-20240702093213.jpg',
     trailerUrl: '',
     reparto: [],
     horarios: ['15:00', '18:00', '20:30'],
+      banner: '', // 1280x480px recomendado
+      imagenCard: 'https://i.redd.it/1ms6vl8w22me1.jpeg', // 414x621px recomendado
   },
   {
     id: '3',
@@ -45,10 +46,11 @@ export const peliculas: Pelicula[] = [
     genero: 'Animación, Aventura',
     clasificacion: 'APT',
     duracion: '1h 25m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42715-292236-20240702093213.jpg',
     trailerUrl: '',
     reparto: [],
     horarios: ['14:00', '17:00', '20:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '4',
@@ -57,10 +59,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Terror',
     clasificacion: '16',
     duracion: '1h 55m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42716-292237-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['18:00', '21:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '5',
@@ -69,10 +73,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Drama, Romance',
     clasificacion: 'PG-13',
     duracion: '1h 40m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42717-292238-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '6',
@@ -81,10 +87,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Documental',
     clasificacion: 'PG',
     duracion: '1h 20m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42719-292240-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '7',
@@ -93,10 +101,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Animación, Infantil',
     clasificacion: 'APT',
     duracion: '1h 10m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42720-292241-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '8',
@@ -105,10 +115,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Terror',
     clasificacion: '16',
     duracion: '1h 45m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42721-292242-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '9',
@@ -117,10 +129,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Romance',
     clasificacion: 'PG',
     duracion: '1h 30m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42722-292243-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '10',
@@ -129,10 +143,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Musical',
     clasificacion: 'PG-13',
     duracion: '2h 40m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42723-292244-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['25 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '11',
@@ -141,10 +157,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Concierto, Musical',
     clasificacion: 'APT',
     duracion: '1h 50m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42724-292245-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['26 de septiembre'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '12',
@@ -153,10 +171,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Acción, Aventura',
     clasificacion: 'PG-13',
     duracion: '2h 10m',
-    imagen: 'https://static.cinepolis.com/resources/mx/movies/posters/414x603/42726-292247-20240702093213.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['2 de octubre'],
+      banner: '',
+      imagenCard: '',
   },
   // Cartelera Cinemark
   {
@@ -166,10 +186,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Concierto, Musical',
     clasificacion: 'APT',
     duracion: '2h 00m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/dua-lipa-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['19:00', '21:30'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '14',
@@ -178,10 +200,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Documental',
     clasificacion: 'PG',
     duracion: '1h 30m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/homo-argentum-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['18:00', '20:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '15',
@@ -190,10 +214,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Drama, Biografía',
     clasificacion: 'PG',
     duracion: '1h 45m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/apostol-andes-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['16:00', '19:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '16',
@@ -202,10 +228,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Comedia, Familiar',
     clasificacion: 'APT',
     duracion: '1h 20m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/nanito-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['14:00', '17:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '17',
@@ -214,10 +242,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Acción, Ciencia Ficción',
     clasificacion: 'PG-13',
     duracion: '1h 50m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/camina-o-muere-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['16:00', '19:00', '21:30'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '18',
@@ -226,10 +256,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Comedia, Familiar',
     clasificacion: 'APT',
     duracion: '1h 25m',
-    imagen: 'https://cinemarkla.modyocdn.com/uploads/los-patos-y-las-patas-poster.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['15:00', '18:00'],
+      banner: '',
+      imagenCard: '',
   },
   // Cartelera Cineplanet
   {
@@ -239,10 +271,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Acción, Ciencia Ficción',
     clasificacion: 'PG-13',
     duracion: '1h 50m',
-    imagen: 'https://cineplanet-data-prod.s3.amazonaws.com/files/movies/posters/2024/07/03/1719999999-caminaomuere.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['16:00', '19:00', '21:30'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '20',
@@ -251,10 +285,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Terror',
     clasificacion: '16',
     duracion: '1h 55m',
-    imagen: 'https://cineplanet-data-prod.s3.amazonaws.com/files/movies/posters/2024/07/03/1719999999-elconjuro4.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['18:00', '21:00'],
+      banner: '',
+      imagenCard: '',
   },
   {
     id: '21',
@@ -263,10 +299,12 @@ export const peliculas: Pelicula[] = [
     genero: 'Animación, Acción',
     clasificacion: 'APT',
     duracion: '2h 0m',
-    imagen: 'https://cineplanet-data-prod.s3.amazonaws.com/files/movies/posters/2024/07/03/1719999999-demonslayer.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['15:00', '18:00', '20:30'],
+      banner: '',
+      imagenCard: '',
   },
   // Próximos estrenos Cineplanet
   {
@@ -276,9 +314,11 @@ export const peliculas: Pelicula[] = [
     genero: 'Animación',
     clasificacion: 'APT',
     duracion: '1h 36m',
-    imagen: 'https://cineplanet-data-prod.s3.amazonaws.com/files/movies/posters/2024/07/03/1719999999-200lobo.jpg',
+  // imagen borrada
     trailerUrl: '',
     reparto: [],
     horarios: ['Próximamente'],
+      banner: '',
+      imagenCard: '',
   },
 ];

@@ -123,7 +123,7 @@ const LandingPage: React.FC = () => {
               className={`relative bg-cineplus-bg-alt rounded shadow overflow-hidden flex flex-col group ${i === 0 ? 'md:row-span-2 md:col-span-2 md:h-[500px]' : 'h-[320px]'}`}
               style={i === 0 ? { gridRow: 'span 2', gridColumn: 'span 2' } : {}}
             >
-              <img src={p.imagen} alt={p.titulo} className={`object-cover w-full ${i === 0 ? 'h-full' : 'h-56'}`} />
+              <img src={p.imagenCard} alt={p.titulo} className={`object-cover w-full ${i === 0 ? 'h-full' : 'h-56'}`} />
               {/* Etiqueta de estreno */}
               {(activeTab === 0 && i < 2) ? (
                 <span className="absolute top-3 left-0 bg-cineplus-red text-white px-3 py-1 text-xs font-bold rounded-r-full">Estreno</span>
