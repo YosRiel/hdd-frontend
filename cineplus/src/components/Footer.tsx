@@ -59,7 +59,7 @@ const Footer: React.FC = () => (
     <div className="bg-white text-[#122241] text-sm py-4">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          Cineplex S.A. | RUC 20429683581<br />
+          Cineplus S.A<br />
           Todos los derechos reservados 2025
         </div>
         <div className="flex items-center gap-4">
