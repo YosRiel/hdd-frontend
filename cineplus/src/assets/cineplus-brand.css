@@ -1,0 +1,43 @@
+/* CinePlus brand palette: negro y rojo */
+:root {
+  --cineplus-red: #c1272d;
+  --cineplus-black: #181818;
+  --cineplus-white: #fff;
+  --cineplus-gray: #232323;
+  --cineplus-bg: #181818;
+  --cineplus-bg-alt: #232323;
+}
+
+.text-cineplus-red { color: var(--cineplus-red); }
+.text-cineplus-black { color: var(--cineplus-black); }
+.text-cineplus-white { color: var(--cineplus-white); }
+.bg-cineplus-red { background-color: var(--cineplus-red); }
+.bg-cineplus-black { background-color: var(--cineplus-black); }
+.bg-cineplus-gray { background-color: var(--cineplus-gray); }
+.bg-cineplus-bg { background-color: var(--cineplus-bg); }
+.bg-cineplus-bg-alt { background-color: var(--cineplus-bg-alt); }
+.border-cineplus-red { border-color: var(--cineplus-red); }
+.border-cineplus-black { border-color: var(--cineplus-black); }
+
+/* Button styles */
+.btn-cineplus {
+  background: var(--cineplus-red);
+  color: var(--cineplus-white);
+  border-radius: 0.375rem;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-cineplus:hover {
+  background: #a81e23;
+}
+
+/* For dark backgrounds */
+.text-on-dark {
+  color: var(--cineplus-white);
+}
+
+/* Navbar shadow for dark mode */
+.navbar-shadow-dark {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.7);
+}

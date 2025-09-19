@@ -1,19 +1,49 @@
 // cineplus/src/pages/LandingPage.tsx
-import React from "react";
+import React, { useState,} from "react";
 import Navbar from "../components/Navbar";
 import HeroBanner from "../components/HeroBanner";
-import MovieCarousel from "../components/MovieCarousel";
-import Footer from "../components/Footer";
+import { peliculas } from "../data/peliculas";
+import { cines } from "../data/cines";
+
+const ciudades = Array.from(new Set(cines.map((c) => c.ciudad)));
+
 
 const LandingPage: React.FC = () => {
+  const [peliculaSel, setPeliculaSel] = useState(peliculas[0]?.id || "");
+  const [ciudadSel, setCiudadSel] = useState(ciudades[0] || "");
+  const [cineSel, setCineSel] = useState("");
+  const [fechaSel, setFechaSel] = useState("");
+  const [activeTab, setActiveTab] = useState(0);
+
+  // Separar películas por tipo (simulado)
+  const cartelera = peliculas.slice(0, 3);
+  const preventa = peliculas.slice(3, 5);
+  const proximosEstrenos = peliculas.slice(5, 7);
+
+  function getPeliculasByTab() {
+    switch (activeTab) {
+      case 0:
+        return cartelera;
+      case 1:
+        return preventa;
+      case 2:
+        return proximosEstrenos;
+      default:
+        return [];
+    }
+  }
+
+
+  const cinesFiltrados = cines.filter((c) => c.ciudad === ciudadSel);
+
   return (
-<<<<<<< Updated upstream
+
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar />
       <HeroBanner />
       <MovieCarousel />
       <Footer />
-=======
+
   <div className="bg-cineplus-bg min-h-screen flex flex-col">
   <Navbar heroHeight={500} />
   <HeroBanner />
@@ -100,7 +130,11 @@ const LandingPage: React.FC = () => {
               className={`relative bg-cineplus-bg-alt rounded shadow overflow-hidden flex flex-col group ${i === 0 ? 'md:row-span-2 md:col-span-2 md:h-[500px]' : 'h-[320px]'}`}
               style={i === 0 ? { gridRow: 'span 2', gridColumn: 'span 2' } : {}}
             >
+
               <img src={p.imagen} alt={p.titulo} className={`object-cover w-full ${i === 0 ? 'h-full' : 'h-56'}`} />
+
+              <img src={p.imagenCard} alt={p.titulo} className={`object-cover w-full ${i === 0 ? 'h-full' : 'h-56'}`} />
+
               {/* Etiqueta de estreno */}
               {(activeTab === 0 && i < 2) ? (
                 <span className="absolute top-3 left-0 bg-cineplus-red text-white px-3 py-1 text-xs font-bold rounded-r-full">Estreno</span>
@@ -126,7 +160,7 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
->>>>>>> Stashed changes
+
     </div>
   );
 };
