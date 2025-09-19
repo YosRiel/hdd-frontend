@@ -1,36 +1,10 @@
 // cineplus/src/components/HeroBanner.tsx
 import React from "react";
 import Slider from "react-slick";
+import { peliculas } from "../data/peliculas";
+import { useNavigate } from "react-router-dom";
 
 const HeroBanner: React.FC = () => {
-  const banners = [
-    {
-      id: 1,
-      img: "https://sacnkprodpecms.blob.core.windows.net/content/banners/home/1756939832041-large-BANNER-HOME.webp",
-      alt: "Toy Story",
-    },
-    {
-      id: 2,
-      img: "https://sacnkprodpecms.blob.core.windows.net/content/banners/home/1757517212915-large-Banner-web.webp",
-      alt: "Conjuro 4",
-    },
-    {
-      id: 3,
-      img: "https://static.cinepolis.com/img/front/11/20259311338169-prin.jpg",
-      alt: "Demon Slayer",
-    },
-        {
-      id: 3,
-      img: "https://static.cinepolis.com/img/front/11/202591012140659-prin.jpg",
-      alt: "200% Lobo",
-    },
-        {
-      id: 3,
-      img: "https://static.cinepolis.com/img/front/11/2025822105333944-prin.jpg",
-      alt: "Otro viernes de locos",
-    },
-  ];
-
   const settings = {
     dots: true,
     infinite: true,
@@ -40,17 +14,28 @@ const HeroBanner: React.FC = () => {
     slidesToScroll: 1,
     arrows: false,
   };
+  const navigate = useNavigate();
 
   return (
     <section className="w-full max-h-[500px] overflow-hidden">
       <Slider {...settings}>
-        {banners.map((banner) => (
-          <div key={banner.id} className="w-full">
+        {peliculas.map((pelicula) => (
+          <div key={pelicula.id} className="relative w-full">
             <img
-              src={banner.img}
-              alt={banner.alt}
+              src={pelicula.imagen}
+              alt={pelicula.titulo}
               className="w-full h-[500px] object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg">{pelicula.titulo}</h2>
+              <p className="text-white text-lg mb-4 drop-shadow">{pelicula.sinopsis}</p>
+              <button
+                className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2 rounded shadow-lg w-fit"
+                onClick={() => navigate("/boletos?pelicula=" + pelicula.id)}
+              >
+                Comprar
+              </button>
+            </div>
           </div>
         ))}
       </Slider>

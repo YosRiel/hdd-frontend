@@ -1,3 +1,26 @@
+@import "./assets/cineplus-brand.css";
+
+body {
+  background: var(--cineplus-bg);
+  color: var(--cineplus-white);
+}
+
+html {
+  background: var(--cineplus-bg);
+}
+
+/* Scrollbar estilo CinePlus */
+::-webkit-scrollbar {
+  width: 10px;
+  background: var(--cineplus-bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cineplus-red);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a81e23;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
