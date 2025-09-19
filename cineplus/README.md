@@ -67,3 +67,4 @@ export default tseslint.config([
   },
 ])
 ```
+U need istall npm install react-feather

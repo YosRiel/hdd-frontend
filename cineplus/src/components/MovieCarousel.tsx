@@ -1,4 +1,3 @@
-// cineplus/src/components/MovieCarousel.tsx
 import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
@@ -68,32 +67,33 @@ const MovieCarousel: React.FC = () => {
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 3 },
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 480,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: 1 },
       },
     ],
   };
 
   return (
-    <section className="bg-black px-6 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-white text-2xl font-bold">PELÍCULAS EN CARTELERA</h2>
-        <button className="bg-red-600 text-white px-4 py-2 rounded text-sm font-bold">
+    <section className="bg-black px-2 md:px-6 py-8">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 px-2 md:px-0">
+        <h2 className="text-white text-2xl font-bold mb-4 md:mb-0">PELÍCULAS EN CARTELERA</h2>
+        <button className="bg-red-600 text-white px-4 py-2 rounded text-sm font-bold w-full md:w-auto">
           📍 RECOMENDADO
         </button>
       </div>
       <Slider {...settings}>
         {movies.map((movie) => (
-          <div key={movie.id} className="w-[200px] px-1">
-            <Link to="/detalle" className="block">
+          <div key={movie.id} className="px-1">
+            <Link to="/detalle" className="block w-full max-w-xs mx-auto">
               <div className="relative group">
                 <img
                   src={movie.img}
                   alt={movie.title}
-                  className="w-[200px] h-[280px] object-cover rounded-lg"
+                  className="w-full h-[280px] object-cover rounded-lg"
+                  style={{ maxWidth: 220 }}
                 />
                 <div className="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">
                   {movie.ageRating}

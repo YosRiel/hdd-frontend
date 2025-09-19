@@ -1,6 +1,7 @@
 // cineplus/src/components/HeroBanner.tsx
 import React from "react";
 import Slider from "react-slick";
+import { ChevronRight, ChevronLeft } from "react-feather";
 
 const HeroBanner: React.FC = () => {
   const banners = [
@@ -19,17 +20,36 @@ const HeroBanner: React.FC = () => {
       img: "https://static.cinepolis.com/img/front/11/20259311338169-prin.jpg",
       alt: "Demon Slayer",
     },
-        {
-      id: 3,
+    {
+      id: 4,
       img: "https://static.cinepolis.com/img/front/11/202591012140659-prin.jpg",
       alt: "200% Lobo",
     },
-        {
-      id: 3,
+    {
+      id: 5,
       img: "https://static.cinepolis.com/img/front/11/2025822105333944-prin.jpg",
       alt: "Otro viernes de locos",
     },
   ];
+
+  // Flechas personalizadas
+  const NextArrow = ({ onClick }: any) => (
+    <button
+      onClick={onClick}
+      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-2 rounded-full z-10"
+    >
+      <ChevronRight size={28} />
+    </button>
+  );
+
+  const PrevArrow = ({ onClick }: any) => (
+    <button
+      onClick={onClick}
+      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-2 rounded-full z-10"
+    >
+      <ChevronLeft size={28} />
+    </button>
+  );
 
   const settings = {
     dots: true,
@@ -38,20 +58,22 @@ const HeroBanner: React.FC = () => {
     autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
-    <section className="w-full max-h-[500px] overflow-hidden">
+    <section className="relative w-full max-h-[600px] overflow-hidden">
       <Slider {...settings}>
         {banners.map((banner) => (
-          <div key={banner.id} className="w-full">
+          <figure key={banner.id} className="relative w-full">
             <img
               src={banner.img}
               alt={banner.alt}
-              className="w-full h-[500px] object-cover"
+              className="w-full h-[600px] object-cover"
             />
-          </div>
+          </figure>
         ))}
       </Slider>
     </section>
@@ -59,3 +81,4 @@ const HeroBanner: React.FC = () => {
 };
 
 export default HeroBanner;
+
