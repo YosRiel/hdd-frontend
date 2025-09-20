@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { FiUser, FiSearch, FiHelpCircle } from "react-icons/fi";
 
 const navLinks = [
-  { label: "Películas", to: "/cartelera" },
-  { label: "Cines", to: "/" },
+  { label: "Cartelera", to: "/cartelera" },
+  { label: "Cines", to: "/cines" },
+  { label: "Promociones", to: "/promociones" },
   { label: "Dulcería", to: "/dulceria" },
 ];
 
@@ -93,9 +94,6 @@ const Navbar: React.FC<NavbarProps> = ({ heroHeight = 650, variant = 'landing' }
         <div className="flex items-center gap-5">
           <Link to="/perfil" title="Usuario" className="text-cineplus-white hover:text-cineplus-red transition-all duration-300">
             <FiUser size={26} />
-          </Link>
-          <Link to="/" title="Buscar" className="text-cineplus-white hover:text-cineplus-red transition-all duration-300">
-            <FiSearch size={26} />
           </Link>
           <Link to="/atencion" title="Ayuda" className="relative text-cineplus-white hover:text-cineplus-red transition-all duration-300">
             <FiHelpCircle size={26} />
