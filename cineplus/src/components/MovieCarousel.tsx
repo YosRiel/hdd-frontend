@@ -26,13 +26,13 @@ const MovieCarousel: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-  <section className="w-full max-w-[1070px] mx-auto mt-4 px-0 bg-[#f5f6fa] pb-8" style={{paddingLeft: 80, paddingRight: 80}}>
-      <h2 className="text-[64px] leading-none font-extrabold text-[#d3d3d3] mb-2 pt-2 pl-2" style={{fontFamily: 'inherit'}}>Películas</h2>
-      <div className="flex gap-2 border-b-2 border-[#e50914] mb-6 pl-2">
+  <section className="w-full max-w-[1070px] mx-auto mt-4 px-0" style={{paddingLeft: 80, paddingRight: 80, background: "var(--cineplus-black)"}}>
+    <h2 className="text-[64px] leading-none font-extrabold mb-2 pt-2 pl-2" style={{fontFamily: 'inherit', color: 'var(--cineplus-gray-light)'}}>Películas</h2>
+    <div className="flex gap-2 border-b-2 mb-6 pl-2" style={{borderColor: 'var(--cineplus-gray)'}}>
         {TABS.map((tab, idx) => (
           <button
             key={tab}
-            className={`pb-2 px-1 text-xl font-semibold transition border-b-2 ${idx === activeTab ? 'border-[#e50914] text-black' : 'border-transparent text-black/60 hover:text-[#e50914]'}`}
+            className={`pb-2 px-1 text-xl font-semibold transition border-b-2 ${idx === activeTab ? 'border-[var(--cineplus-gray)] text-[var(--cineplus-gray-light)]' : 'border-transparent text-[var(--cineplus-gray)] hover:text-[var(--cineplus-gray-light)]'}`}
             onClick={() => setActiveTab(idx)}
             style={{fontFamily: 'inherit'}}
           >
@@ -42,7 +42,7 @@ const MovieCarousel: React.FC = () => {
       </div>
           <div className="showtimes-grid grid grid-cols-[420px_220px_220px] gap-2 mx-auto items-start justify-center w-full" style={{height: 608}}>
         {/* Póster grande a la izquierda */}
-        <div className="bg-white rounded shadow flex items-center justify-center overflow-hidden relative group" style={{width: 420, height: 608}}>
+  <div className="rounded shadow flex items-center justify-center overflow-hidden relative group" style={{width: 420, height: 608, background: 'var(--cineplus-gray-dark)'}}>
           {getPeliculasByTab(activeTab)[0] && (
             <>
               <img src={getPeliculasByTab(activeTab)[0].imagenCard} alt={getPeliculasByTab(activeTab)[0].titulo} className="object-cover w-full h-full" />
@@ -55,9 +55,9 @@ const MovieCarousel: React.FC = () => {
           )}
         </div>
         {/* Grid de 4 pósters medianos a la derecha en 2x2 */}
-        <div className="flex flex-col gap-2" style={{width: 220, height: 608}}>
+  <div className="flex flex-col gap-2" style={{width: 220, height: 608}}>
           {getPeliculasByTab(activeTab).slice(1, 2).map((p) => (
-            <div key={p.id} className="relative bg-white rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300}}>
+            <div key={p.id} className="relative rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300, background: 'var(--cineplus-gray-dark)'}}>
               <img src={p.imagenCard} alt={p.titulo} className="object-cover w-full h-full" />
               {activeTab === 0 && (
                 <span className="absolute left-0 top-2 -rotate-12 bg-[#e50914] text-white px-4 py-1 text-base font-bold shadow-lg" style={{fontFamily: 'inherit'}}>Estreno</span>
@@ -70,7 +70,7 @@ const MovieCarousel: React.FC = () => {
             </div>
           ))}
           {getPeliculasByTab(activeTab).slice(3, 4).map((p) => (
-            <div key={p.id} className="relative bg-white rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300}}>
+            <div key={p.id} className="relative rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300, background: 'var(--cineplus-gray-dark)'}}>
               <img src={p.imagenCard} alt={p.titulo} className="object-cover w-full h-full" />
               {activeTab === 0 && (
                 <span className="absolute left-0 top-2 -rotate-12 bg-[#e50914] text-white px-4 py-1 text-base font-bold shadow-lg" style={{fontFamily: 'inherit'}}>Estreno</span>
@@ -84,8 +84,8 @@ const MovieCarousel: React.FC = () => {
           ))}
         </div>
         {/* Botón vertical "Ver más películas" */}
-        <div className="flex flex-col justify-center items-center bg-[#e50914] rounded shadow" style={{width: 220, height: 608}}>
-          <button className="text-white text-2xl font-bold px-4 py-8 rotate-0 hover:bg-[#b0060f] transition" style={{writingMode: 'vertical-rl', textOrientation: 'mixed', fontFamily: 'inherit'}} onClick={() => window.location.href = '/cartelera'}>
+        <div className="flex flex-col justify-center items-center rounded shadow" style={{width: 220, height: 608, background: 'var(--cineplus-gray-dark)'}}>
+          <button className="text-[var(--cineplus-gray-light)] text-2xl font-bold px-4 py-8 rotate-0 hover:bg-[var(--cineplus-gray)] transition" style={{writingMode: 'vertical-rl', textOrientation: 'mixed', fontFamily: 'inherit', background: 'var(--cineplus-black)'}} onClick={() => window.location.href = '/cartelera'}>
             Ver más películas
           </button>
         </div>

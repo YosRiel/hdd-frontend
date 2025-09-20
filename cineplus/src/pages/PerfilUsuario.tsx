@@ -68,7 +68,7 @@ const PerfilUsuario: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+  <div style={{ background: "var(--cineplus-black)", color: "var(--cineplus-gray-light)" }} className="min-h-screen flex flex-col">
       <Navbar />
       <div className="flex-grow flex justify-center items-center">
         <div className="bg-white text-black p-8 rounded-xl w-full max-w-md shadow-lg">

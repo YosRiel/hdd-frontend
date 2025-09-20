@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 
 export default function Dulceria() {
   return (
-    <div className="min-h-screen bg-gray-100 pt-16">
+  <div style={{ background: "var(--cineplus-black)", color: "var(--cineplus-gray-light)" }} className="min-h-screen pt-16">
       {/* Navbar fijo solo en Dulcería */}
       <Navbar />
 
@@ -12,7 +12,7 @@ export default function Dulceria() {
         {/* Grid de productos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Canchita */}
-          <div className="bg-white rounded-lg shadow-md p-4 text-center">
+          <div style={{ background: "var(--cineplus-gray-dark)", color: "var(--cineplus-gray-light)" }} className="rounded-lg shadow-md p-4 text-center">
             <img
               src="/images/canchita.jpg"
               alt="Canchita"
@@ -24,7 +24,7 @@ export default function Dulceria() {
           </div>
 
           {/* Gaseosas */}
-          <div className="bg-white rounded-lg shadow-md p-4 text-center">
+          <div style={{ background: "var(--cineplus-gray-dark)", color: "var(--cineplus-gray-light)" }} className="rounded-lg shadow-md p-4 text-center">
             <img
               src="/images/gaseosa.jpg"
               alt="Gaseosa"
@@ -36,7 +36,7 @@ export default function Dulceria() {
           </div>
 
           {/* Promociones */}
-          <div className="bg-white rounded-lg shadow-md p-4 text-center">
+          <div style={{ background: "var(--cineplus-gray-dark)", color: "var(--cineplus-gray-light)" }} className="rounded-lg shadow-md p-4 text-center">
             <img
               src="/images/promocion.jpg"
               alt="Promociones"
