@@ -19,7 +19,6 @@ const LandingPage: React.FC = () => {
           <FilterBar />
         </div>
         <section className="mt-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Películas</h2>
           <MovieCarousel />
         </section>
       </div>

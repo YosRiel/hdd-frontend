@@ -1,134 +1,109 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { User, Menu, X } from "react-feather";
+import { FiUser, FiSearch, FiHelpCircle } from "react-icons/fi";
 
-const Navbar: React.FC = () => {
-  const [navStyle, setNavStyle] = useState("transparent");
-  const [mobileOpen, setMobileOpen] = useState(false);
+const navLinks = [
+  { label: "Películas", to: "/cartelera" },
+  { label: "Cines", to: "/" },
+  { label: "Promociones", to: "/promociones" },
+  { label: "Dulcería", to: "/dulceria" },
+];
+
+
+interface NavbarProps {
+  heroHeight?: number;
+  variant?: 'landing' | 'boletos';
+}
+
+const Navbar: React.FC<NavbarProps> = ({ heroHeight = 650, variant = 'landing' }) => {
+  const [atTop, setAtTop] = useState(true);
+  const [logoHover, setLogoHover] = useState(false);
+  const [beyondHero, setBeyondHero] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const carouselHeight = 600;
-      if (scrollY < 50) {
-        setNavStyle("transparent");
-      } else if (scrollY < carouselHeight) {
-        setNavStyle("white");
-      } else {
-        setNavStyle("black");
-      }
+      setAtTop(window.scrollY < 10);
+      setBeyondHero(window.scrollY > heroHeight - 60); // 60px: navbar height approx
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [heroHeight]);
 
-  const navBg =
-    navStyle === "transparent"
-      ? "bg-transparent text-white border-b border-white"
-      : navStyle === "white"
-      ? "bg-white text-black shadow-md border-b border-gray-200"
-      : "bg-black text-white shadow-md border-b border-white";
-
-  const menuItems = [
-    { to: "/cartelera", label: "Películas" },
-    { to: "/cines", label: "Cines" },
-    { to: "/promociones", label: "Promociones" },
-    { to: "/combos", label: "Dulcería" },
-  ];
+  // Estilos condicionales por variante
+  let headerClass = "w-full z-100 transition-all duration-300 ";
+  let headerStyle: React.CSSProperties = {};
+  let logoSrc = beyondHero || logoHover ? "/public/logo-black.png" : "/public/logo-white.png";
+  if (variant === 'landing') {
+    headerClass += 'fixed left-0 top-0 ';
+    headerClass += beyondHero
+      ? "bg-cineplus-black border-b border-cineplus-red navbar-shadow-dark"
+      : atTop
+        ? "bg-transparent color-cineplus-black shadow-none"
+        : "bg-cineplus-black border-cineplus-red navbar-shadow-dark";
+    headerStyle = beyondHero ? { background: "#000000", color: "#ffffff", backdropFilter: "none" } : atTop ? { background: "transparent", color: "#ffffff", backdropFilter: "none" } : { background: "transparent", color: "#ffffff", backdropFilter: "blur(0px)" };
+  } else if (variant === 'boletos') {
+    // Estático, no fixed
+    headerClass += "bg-white border-b border-gray-200 shadow-sm";
+    headerStyle = { background: "#fff", color: "#fffffff", boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)" };
+    logoSrc = "/public/LOGO_SET1.png";
+  }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${navBg}`}
-      style={{ minHeight: 64 }}
+    <header
+      className={headerClass}
+      style={headerStyle}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center h-16">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
-          <img
-            src={
-              navStyle === "white"
-                ? "/logo-black.png"
-                : "/logo-white.png"
-            }
-            alt="cineplus"
-            className="h-20 w-20 object-contain transition-all duration-300"
-          />
-          <span className="tracking-tight">CinePlus</span>
-        </Link>
-
-        {/* Menú central - oculto en móviles */}
-        <ul className="flex-1 hidden md:flex justify-center gap-8 font-semibold text-base">
-          {menuItems.map((item) => (
-            <li key={item.to}>
-              <Link to={item.to} className="hover:text-blue-500 transition">
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Iconos a la derecha */}
-        <div className="flex items-center gap-4">
           <Link
-            to="/perfil"
-            className="rounded-full border-2 border-white/60 p-1 hover:bg-white/10 transition"
-            aria-label="Usuario"
+            to="/"
+            className="flex items-center gap-2 group cursor-pointer select-none"
+            onMouseEnter={() => setLogoHover(true)}
+            onMouseLeave={() => setLogoHover(false)}
           >
-            <User size={24} />
+            <img
+              src={logoSrc}
+              alt="CinePlus Logo"
+              className="h-9 w-9 transition"
+            />
+            <span className="font-extrabold text-xl tracking-wide">
+              <span className="text-cineplus-white">Cine</span><span className="text-cineplus-red">Plus</span>
+            </span>
           </Link>
-          {/* Botón menú hamburguesa solo en móviles */}
-          <button
-            className="md:hidden rounded-full border-2 border-white/60 p-1 ml-2"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Abrir menú"
-          >
-            <Menu size={28} />
-          </button>
+        {/* Links */}
+        <nav className="flex-1 flex justify-center">
+          <ul className="flex gap-6 text-base font-medium">
+            {navLinks.map((link) => (
+              <li key={link.label} className="relative group">
+                <Link
+                  to={link.to}
+                  style={beyondHero ? {color: "#ffffff", backdropFilter: "none"} : atTop ? { background: "transparent", color: "#ffffff"} : { background: "transparent", color: "#ffffff"}}
+                  className="transition-all duration-300 hover:text-cineplus-red group-hover:text-cineplus-red peer"
+                >
+                  <span className="relative inline-block">
+                    {link.label}
+                    {/* Subrayado animado solo en hover */}
+                    <span className="block absolute left-0 -bottom-1 w-full h-1 rounded bg-cineplus-red opacity-0 peer-hover:opacity-100 transition-all duration-300 pointer-events-none" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        {/* Iconos */}
+        <div className="flex items-center gap-5">
+          <Link to="/perfil" title="Usuario" className="text-cineplus-white hover:text-cineplus-red transition-all duration-300">
+            <FiUser size={26} />
+          </Link>
+          <Link to="/" title="Buscar" className="text-cineplus-white hover:text-cineplus-red transition-all duration-300">
+            <FiSearch size={26} />
+          </Link>
+          <Link to="/atencion" title="Ayuda" className="relative text-cineplus-white hover:text-cineplus-red transition-all duration-300">
+            <FiHelpCircle size={26} />
+          </Link>
         </div>
       </div>
-
-      {/* Menú lateral móvil */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          {/* Fondo oscuro, detrás del menú */}
-          <div
-            className="absolute inset-0 bg-black/60"
-            onClick={() => setMobileOpen(false)}
-            tabIndex={-1}
-            style={{ zIndex: 10 }}
-          />
-          {/* Menú lateral, por encima */}
-          <div className="fixed top-0 right-0 h-full w-64 bg-white text-black shadow-lg flex flex-col z-20">
-            <button
-              className="self-end m-4"
-              onClick={() => setMobileOpen(false)}
-              aria-label="Cerrar menú"
-            >
-              <X size={32} />
-            </button>
-            <nav className="flex flex-col gap-6 px-8 mt-8 text-lg font-semibold">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="hover:text-blue-500 transition"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                to="/perfil"
-                className="hover:text-blue-500 transition"
-                onClick={() => setMobileOpen(false)}
-              >
-                Perfil
-              </Link>
-            </nav>
-          </div>
-        </div>
-      )}
-    </nav>
+    </header>
   );
 };
 

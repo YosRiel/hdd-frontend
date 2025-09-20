@@ -1,10 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sliders } from "react-feather";
-import movieOptions from "../data/movieOptions";
-import cityOptions from "../data/cityOptions";
-import cinemaOptions from "../data/cinemaOptions";
+
+import { cines } from "../data/cines";
+import { peliculas } from "../data/peliculas";
 import getDateOptions from "../data/dateOptions";
+
+
+// Extraer títulos de películas únicos
+const movieOptions = Array.from(new Set(peliculas.map(p => p.titulo)));
+
+// Extraer ciudades únicas de los cines
+const cityOptions = Array.from(new Set(cines.map(c => c.ciudad)));
+
+
+
+// Devuelve los cines (por localidad) para una ciudad dada
+const getCinesByCity = (city: string) => {
+  if (!city) return [];
+  return cines.filter(c => c.ciudad === city);
+};
 
 const dateOptions = getDateOptions();
 
@@ -52,7 +67,10 @@ const FilterBar: React.FC = () => {
           <select
             className="text-gray-500 text-sm bg-transparent focus:outline-none w-full"
             value={city}
-            onChange={e => setCity(e.target.value)}
+            onChange={e => {
+              setCity(e.target.value);
+              setCinema(""); // Reinicia el cine seleccionado al cambiar ciudad
+            }}
           >
             <option value="">Dónde estás</option>
             {cityOptions.map((city, index) => (
@@ -63,15 +81,18 @@ const FilterBar: React.FC = () => {
 
         {/* Filtro 3 */}
         <div className="flex flex-col justify-center flex-1 px-0 md:px-6 border-b border-gray-200 md:border-b-0 md:border-r">
-          <label className="font-bold text-base text-gray-800 mb-0">Por cine</label>
+          <label className="font-bold text-base text-gray-800 mb-0">Por cine/localidad</label>
           <select
             className="text-gray-500 text-sm bg-transparent focus:outline-none w-full"
             value={cinema}
             onChange={e => setCinema(e.target.value)}
+            disabled={!city}
           >
-            <option value="">Elige tu Cineplus</option>
-            {cinemaOptions.map((cinema, index) => (
-              <option key={index} value={cinema}>{cinema}</option>
+            <option value="">Elige tu cine/localidad</option>
+            {getCinesByCity(city).map((cine) => (
+              <option key={cine.id} value={cine.id}>
+                {cine.localidad} ({cine.nombre})
+              </option>
             ))}
           </select>
         </div>

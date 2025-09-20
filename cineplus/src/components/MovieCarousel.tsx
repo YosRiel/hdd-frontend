@@ -1,115 +1,96 @@
-import React from "react";
-import Slider from "react-slick";
-import { Link } from "react-router-dom";
 
-const movies = [
-  {
-    id: 1,
-    title: "200% LOBO",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008117.jpg",
-    ageRating: "TP",
-    format: "2D",
-  },
-  {
-    id: 2,
-    title: "PUTIN",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008182.jpg",
-    ageRating: "14",
-    format: "2D",
-  },
-  {
-    id: 3,
-    title: "TOY STORY (1995)",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008232.jpg",
-    ageRating: "TP",
-    format: "2D",
-  },
-  {
-    id: 4,
-    title: "DEMON SLAYER CASTILLO INFINITO",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00007806.jpg",
-    ageRating: "14",
-    format: "2D - D-BOX - SALA XD",
-  },
-  {
-    id: 5,
-    title: "EL CONJURO 4 ÚLTIMOS RITOS",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008089.jpg",
-    ageRating: "16",
-    format: "2D",
-  },
-  {
-    id: 6,
-    title: "MISTURA",
-    img: "https://sacnkprodpecms.blob.core.windows.net/content/posters/HO00008007.jpg",
-    ageRating: "14",
-    format: "2D",
-  },
-];
+import React, { useState } from "react";
+import { ShoppingCart, PlusCircle } from "react-feather";
+import { peliculas } from "../data/peliculas";
+
+
+const TABS = ["En cartelera", "Preventa", "Próximos estrenos", "BTS Week"];
+
+
+function getPeliculasByTab(tabIdx: number) {
+  if (tabIdx === 0) {
+    // Cartelera: las primeras 5
+    return peliculas.slice(0, 5);
+  } else if (tabIdx === 1) {
+    // Preventa: las siguientes 5
+    return peliculas.slice(5, 10);
+  } else if (tabIdx === 2) {
+    // Próximos estrenos: las siguientes 5
+    return peliculas.slice(10, 15);
+  } else {
+    // BTS Week: las siguientes 5
+    return peliculas.slice(15, 20);
+  }
+}
 
 const MovieCarousel: React.FC = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    autoplay: false,
-    autoplaySpeed: 3000,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: { slidesToShow: 5 },
-      },
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 4 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="bg-black px-2 md:px-6 py-8">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 px-2 md:px-0">
-        <h2 className="text-white text-2xl font-bold mb-4 md:mb-0">PELÍCULAS EN CARTELERA</h2>
-        <button className="bg-red-600 text-white px-4 py-2 rounded text-sm font-bold w-full md:w-auto">
-          📍 RECOMENDADO
-        </button>
-      </div>
-      <Slider {...settings}>
-        {movies.map((movie) => (
-          <div key={movie.id} className="px-1">
-            <Link to="/detalle" className="block w-full max-w-xs mx-auto">
-              <div className="relative group">
-                <img
-                  src={movie.img}
-                  alt={movie.title}
-                  className="w-full h-[280px] object-cover rounded-lg"
-                  style={{ maxWidth: 220 }}
-                />
-                <div className="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">
-                  {movie.ageRating}
-                </div>
-              </div>
-              <div className="mt-3">
-                <h3 className="text-white font-bold text-sm mb-2">{movie.title}</h3>
-                <div className="text-gray-400 text-xs mb-2">{movie.format}</div>
-                <button className="bg-gray-700 text-white px-3 py-1 rounded text-xs">
-                  Estreno
-                </button>
-              </div>
-            </Link>
-          </div>
+  <section className="w-full max-w-[1070px] mx-auto mt-4 px-0 bg-[#f5f6fa] pb-8" style={{paddingLeft: 80, paddingRight: 80}}>
+      <h2 className="text-[64px] leading-none font-extrabold text-[#d3d3d3] mb-2 pt-2 pl-2" style={{fontFamily: 'inherit'}}>Películas</h2>
+      <div className="flex gap-2 border-b-2 border-[#e50914] mb-6 pl-2">
+        {TABS.map((tab, idx) => (
+          <button
+            key={tab}
+            className={`pb-2 px-1 text-xl font-semibold transition border-b-2 ${idx === activeTab ? 'border-[#e50914] text-black' : 'border-transparent text-black/60 hover:text-[#e50914]'}`}
+            onClick={() => setActiveTab(idx)}
+            style={{fontFamily: 'inherit'}}
+          >
+            {tab}
+          </button>
         ))}
-      </Slider>
+      </div>
+          <div className="showtimes-grid grid grid-cols-[420px_220px_220px] gap-2 mx-auto items-start justify-center w-full" style={{height: 608}}>
+        {/* Póster grande a la izquierda */}
+        <div className="bg-white rounded shadow flex items-center justify-center overflow-hidden relative group" style={{width: 420, height: 608}}>
+          {getPeliculasByTab(activeTab)[0] && (
+            <>
+              <img src={getPeliculasByTab(activeTab)[0].imagenCard} alt={getPeliculasByTab(activeTab)[0].titulo} className="object-cover w-full h-full" />
+              {/* Overlay de botones al hacer hover */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 bg-black/40 backdrop-blur-sm" style={{backdropFilter: 'blur(6px)'}}>
+                <button className="flex items-center gap-2 bg-[#e50914] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#b0060f] transition-all" onClick={() => window.location.href = `/boletos?pelicula=${getPeliculasByTab(activeTab)[0].id}`}> <ShoppingCart size={20}/> Comprar</button>
+                <button className="flex items-center gap-2 bg-[#0a3cff] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#072a99] transition-all" onClick={() => window.location.href = `/detalle?pelicula=${getPeliculasByTab(activeTab)[0].id}`}> <PlusCircle size={20}/> Ver detalles</button>
+              </div>
+            </>
+          )}
+        </div>
+        {/* Grid de 4 pósters medianos a la derecha en 2x2 */}
+        <div className="flex flex-col gap-2" style={{width: 220, height: 608}}>
+          {getPeliculasByTab(activeTab).slice(1, 2).map((p) => (
+            <div key={p.id} className="relative bg-white rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300}}>
+              <img src={p.imagenCard} alt={p.titulo} className="object-cover w-full h-full" />
+              {activeTab === 0 && (
+                <span className="absolute left-0 top-2 -rotate-12 bg-[#e50914] text-white px-4 py-1 text-base font-bold shadow-lg" style={{fontFamily: 'inherit'}}>Estreno</span>
+              )}
+              {/* Overlay de botones al hacer hover */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 bg-black/40 backdrop-blur-sm" style={{backdropFilter: 'blur(6px)'}}>
+                <button className="flex items-center gap-2 bg-[#e50914] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#b0060f] transition-all" onClick={() => window.location.href = `/boletos?pelicula=${p.id}`}> <ShoppingCart size={20}/> Comprar</button>
+                <button className="flex items-center gap-2 bg-[#0a3cff] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#072a99] transition-all" onClick={() => window.location.href = `/detalle?pelicula=${p.id}`}> <PlusCircle size={20}/> Ver detalles</button>
+              </div>
+            </div>
+          ))}
+          {getPeliculasByTab(activeTab).slice(3, 4).map((p) => (
+            <div key={p.id} className="relative bg-white rounded shadow overflow-hidden flex items-center justify-center group" style={{width: 220, height: 300}}>
+              <img src={p.imagenCard} alt={p.titulo} className="object-cover w-full h-full" />
+              {activeTab === 0 && (
+                <span className="absolute left-0 top-2 -rotate-12 bg-[#e50914] text-white px-4 py-1 text-base font-bold shadow-lg" style={{fontFamily: 'inherit'}}>Estreno</span>
+              )}
+              {/* Overlay de botones al hacer hover */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 bg-black/40 backdrop-blur-sm" style={{backdropFilter: 'blur(6px)'}}>
+                <button className="flex items-center gap-2 bg-[#e50914] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#b0060f] transition-all" onClick={() => window.location.href = `/boletos?pelicula=${p.id}`}> <ShoppingCart size={20}/> Comprar</button>
+                <button className="flex items-center gap-2 bg-[#0a3cff] text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105 hover:bg-[#072a99] transition-all" onClick={() => window.location.href = `/detalle?pelicula=${p.id}`}> <PlusCircle size={20}/> Ver detalles</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Botón vertical "Ver más películas" */}
+        <div className="flex flex-col justify-center items-center bg-[#e50914] rounded shadow" style={{width: 220, height: 608}}>
+          <button className="text-white text-2xl font-bold px-4 py-8 rotate-0 hover:bg-[#b0060f] transition" style={{writingMode: 'vertical-rl', textOrientation: 'mixed', fontFamily: 'inherit'}} onClick={() => window.location.href = '/cartelera'}>
+            Ver más películas
+          </button>
+        </div>
+      </div>
     </section>
   );
 };
