@@ -4,7 +4,7 @@ import { ShoppingCart, PlusCircle } from "react-feather";
 import { peliculas } from "../data/peliculas";
 
 
-const TABS = ["En cartelera", "Preventa", "Próximos estrenos", "BTS Week"];
+const TABS = ["En cartelera", "Preventa", "Próximos estrenos"];
 
 
 function getPeliculasByTab(tabIdx: number) {
@@ -18,8 +18,7 @@ function getPeliculasByTab(tabIdx: number) {
     // Próximos estrenos: las siguientes 5
     return peliculas.slice(10, 15);
   } else {
-    // BTS Week: las siguientes 5
-    return peliculas.slice(15, 20);
+    return [];
   }
 }
 

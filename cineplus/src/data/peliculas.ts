@@ -17,17 +17,6 @@ export interface Pelicula {
 export const peliculas: Pelicula[] = [
   {
     id: '1',
-    titulo: 'Camina o Muere',
-    sinopsis: 'Un grupo de jóvenes debe sobrevivir en un mundo postapocalíptico donde caminar es la única opción para sobrevivir.',
-    genero: 'Acción, Ciencia Ficción',
-    clasificacion: 'PG-13',
-    duracion: '1h 50m',
-    trailerUrl: '',
-    reparto: [],
-    horarios: ['16:00', '19:00', '21:30'],
-  },
-  {
-    id: '2',
     titulo: 'Demon Slayer: Kimetsu no Yaiba – Castillo Infinito',
     sinopsis: 'Tanjiro y sus amigos enfrentan nuevos desafíos en el Castillo Infinito.',
     genero: 'Animación, Acción',
@@ -37,8 +26,23 @@ export const peliculas: Pelicula[] = [
     reparto: [],
     horarios: ['15:00', '18:00', '20:30'],
       banner: '', // 1280x480px recomendado
-      imagenCard: 'https://i.redd.it/1ms6vl8w22me1.jpeg', // 414x621px recomendado
+      imagenCard: 'https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00002431?referenceScheme=HeadOffice&allowPlaceHolder=true', // 414x621px recomendado
   },
+  {
+    
+    id: '2',
+    titulo: 'Camina o Muere',
+    sinopsis: 'Un grupo de jóvenes debe sobrevivir en un mundo postapocalíptico donde caminar es la única opción para sobrevivir.',
+    genero: 'Acción, Ciencia Ficción',
+    clasificacion: 'PG-13',
+    duracion: '1h 50m',
+    trailerUrl: '',
+    reparto: [],
+    horarios: ['16:00', '19:00', '21:30'],
+      banner: '', // 1280x480px recomendado
+      imagenCard: 'https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/FilmPosterGraphic/HO00002473?referenceScheme=HeadOffice&allowPlaceHolder=true', // 414x621px recomendado
+  },
+  
   {
     id: '3',
     titulo: 'Toy Story (30 aniversario)',
