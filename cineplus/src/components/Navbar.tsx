@@ -5,7 +5,6 @@ import { FiUser, FiSearch, FiHelpCircle } from "react-icons/fi";
 const navLinks = [
   { label: "Películas", to: "/cartelera" },
   { label: "Cines", to: "/" },
-  { label: "Promociones", to: "/promociones" },
   { label: "Dulcería", to: "/dulceria" },
 ];
 
